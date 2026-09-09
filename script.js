@@ -859,61 +859,9 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal()
   })();
 
 
-  /* ── 2. ANIMATED LETTER SPLIT ON SECTION TITLES ────
-     Each letter gets staggered pop-in on first reveal  */
-  function splitLetters(el) {
-    if (el.dataset.split) return;
-    el.dataset.split = '1';
-
-    // Walk child nodes — preserve <span class="accent"> wrapping
-    const nodes = Array.from(el.childNodes);
-    el.innerHTML = '';
-
-    nodes.forEach(node => {
-      if (node.nodeType === Node.TEXT_NODE) {
-        const text = node.textContent;
-        text.split('').forEach((ch, i) => {
-          if (ch === ' ') {
-            el.appendChild(document.createTextNode(' '));
-          } else {
-            const span = document.createElement('span');
-            span.className = 'anim-letter';
-            span.textContent = ch;
-            span.style.animationDelay = (i * 0.04) + 's';
-            el.appendChild(span);
-          }
-        });
-      } else if (node.nodeType === Node.ELEMENT_NODE) {
-        // It's a <span class="accent"> — split its text too
-        const inner = node.textContent;
-        const wrapper = document.createElement('span');
-        wrapper.className = node.className;
-        inner.split('').forEach((ch, i) => {
-          if (ch === ' ') {
-            wrapper.appendChild(document.createTextNode(' '));
-          } else {
-            const span = document.createElement('span');
-            span.className = 'anim-letter';
-            span.textContent = ch;
-            span.style.animationDelay = (i * 0.04) + 's';
-            wrapper.appendChild(span);
-          }
-        });
-        el.appendChild(wrapper);
-      }
-    });
-  }
-
-  // Observe section titles — split on first enter viewport
-  const titleObs = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (!entry.isIntersecting) return;
-      splitLetters(entry.target);
-      titleObs.unobserve(entry.target);
-    });
-  }, { threshold: 0.3 });
-
-  document.querySelectorAll('.section-title').forEach(el => titleObs.observe(el));
+  /* ── 2. SECTION TITLES — CSS-only fade-in (no split) ──
+     splitLetters removido: rompía textos en móvil.
+     La animación se hace 100% en CSS con .reveal        */
 
 
   /* ── 3. EMOJI AUTO-ANIMATE ON SCROLL ENTER ──────────
@@ -1109,22 +1057,8 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal()
   });
 
 
-  /* ── 10. SCROLL PROGRESS BAR (top of page) ──────────── */
-  const progressBar = document.createElement('div');
-  progressBar.style.cssText = `
-    position:fixed; top:0; left:0; height:3px; width:0%;
-    background: linear-gradient(90deg, #00d4ff, #a855f7, #10b981);
-    z-index:99999; pointer-events:none;
-    transition: width 0.1s ease;
-    box-shadow: 0 0 10px rgba(0,212,255,0.6), 0 0 20px rgba(168,85,247,0.4);
-  `;
-  document.body.appendChild(progressBar);
-  window.addEventListener('scroll', () => {
-    const scrollTop  = window.pageYOffset;
-    const docHeight  = document.documentElement.scrollHeight - window.innerHeight;
-    const pct        = (scrollTop / docHeight) * 100;
-    progressBar.style.width = pct.toFixed(2) + '%';
-  }, { passive: true });
+  /* ── 10. SCROLL PROGRESS BAR — REMOVIDO ───────────────
+     Quitado por petición: la barrita de arriba molestaba  */
 
 
   /* ── 11. SECTION HEADERS — GLOW AURA ON ENTER ──────── */
