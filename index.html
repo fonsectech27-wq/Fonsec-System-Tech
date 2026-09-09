@@ -5,9 +5,33 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Fonsec System Tech | Soporte Técnico Profesional</title>
   <link rel="icon" href="images/Logo -  Presentacion.jpeg"/>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600;700&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+  <!-- ▸ PERF: preconnect so DNS+TLS happen before CSS fetch -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com"/>
+
+  <!-- ▸ PERF: fonts non-blocking (media trick) -->
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600;700&display=swap"
+        media="print" onload="this.media='all'"/>
+  <noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600;700&display=swap" rel="stylesheet"/>
+  </noscript>
+
+  <!-- ▸ PERF: Font Awesome async -->
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+        media="print" onload="this.media='all'"/>
+  <noscript>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  </noscript>
+
+  <!-- ▸ CSS inline critical (above-fold) — rest loaded normally -->
   <link rel="stylesheet" href="style.css"/>
+
+  <!-- ▸ PERF: hint browser about images -->
+  <link rel="preload" as="image" href="images/Logo -  Presentacion.jpeg"/>
 </head>
 <body>
 
@@ -308,7 +332,7 @@
 
     <div class="trabajo-card reveal" data-delay="0">
       <div class="trabajo-img-wrap">
-        <img src="images/Logo -  Presentacion.jpeg" alt="Fonsec System Tech"/>
+        <img src="images/Logo -  Presentacion.jpeg" alt="Fonsec System Tech" loading="eager"/>
         <div class="trabajo-overlay">
           <div class="to-icon">🏢</div>
           <h5>¿Por qué elegirnos?</h5>
@@ -329,7 +353,7 @@
 
     <div class="trabajo-card reveal" data-delay="100">
       <div class="trabajo-img-wrap">
-        <img src="images/Servicios.jpeg" alt="Top 3 Servicios"/>
+        <img src="images/Servicios.jpeg" alt="Top 3 Servicios" loading="lazy" decoding="async"/>
         <div class="trabajo-overlay">
           <div class="to-icon">⭐</div>
           <h5>Servicios más pedidos</h5>
@@ -350,7 +374,7 @@
 
     <div class="trabajo-card reveal" data-delay="200">
       <div class="trabajo-img-wrap">
-        <img src="images/Pc Gamers.jpeg" alt="PC Gamer Armado"/>
+        <img src="images/Pc Gamers.jpeg" alt="PC Gamer Armado" loading="lazy" decoding="async"/>
         <div class="trabajo-overlay">
           <div class="to-icon">🎮</div>
           <h5>Armado PC Gamer</h5>
@@ -371,7 +395,7 @@
 
     <div class="trabajo-card reveal" data-delay="300">
       <div class="trabajo-img-wrap">
-        <img src="images/Mantenimiento Laptop No Prende Diagnostico.jpeg" alt="Diagnóstico Laptop"/>
+        <img src="images/Mantenimiento Laptop No Prende Diagnostico.jpeg" alt="Diagnóstico Laptop" loading="lazy" decoding="async"/>
         <div class="trabajo-overlay">
           <div class="to-icon">🔍</div>
           <h5>¿PC no enciende?</h5>
@@ -392,7 +416,7 @@
 
     <div class="trabajo-card reveal" data-delay="400">
       <div class="trabajo-img-wrap">
-        <img src="images/Mantenimiento Correctivo.jpeg" alt="Mantenimiento Correctivo"/>
+        <img src="images/Mantenimiento Correctivo.jpeg" alt="Mantenimiento Correctivo" loading="lazy" decoding="async"/>
         <div class="trabajo-overlay">
           <div class="to-icon">🌡️</div>
           <h5>Mantenimiento Correctivo</h5>
@@ -805,6 +829,6 @@
   </div>
 </footer>
 
-<script src="script.js"></script>
+<script src="script.js" defer></script>
 </body>
 </html>
