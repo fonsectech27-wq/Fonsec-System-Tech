@@ -2699,18 +2699,18 @@ img { max-width: 100%; display: block; }
 /* ── REDUCE FLOAT-ICON OPACITY (performance + aesthetics) */
 .float-icon { opacity: 0 !important; }  /* will be set by animation keyframes */
 
-/* ── CONTAIN LAYOUT ─────────────────────────────────── */
-.section           { contain: layout style; }
-.horario-section   { contain: layout style; }
-.servicios         { contain: layout style; }
-.trabajos-section  { contain: layout style; }
-.precios-section   { contain: layout style; }
-.resenas-section   { contain: layout style; }
+/* ── CONTAIN LAYOUT (solo paint, NO layout — layout rompe sticky/fixed) */
+.section           { contain: paint; }
+.horario-section   { contain: paint; }
+.servicios         { contain: paint; }
+.trabajos-section  { contain: paint; }
+.precios-section   { contain: paint; }
+.resenas-section   { contain: paint; }
 
 /* ── IMAGE RENDERING PERFORMANCE ──────────────────── */
 img {
   image-rendering: auto;
-  content-visibility: auto;
+  /* content-visibility removido: ocultaba secciones en móvil */
 }
 .trabajo-img-wrap img,
 .hero-logo-img,
@@ -2769,20 +2769,9 @@ body {
   /* already set — no flash */
 }
 
-/* ── content-visibility: auto (below fold) ──────────
-   Browser skips rendering off-screen sections until
-   user scrolls near — massive initial load speedup    */
-.trabajos-section,
-.process-section,
-.precios-section,
-.cotizar-section,
-.resenas-section,
-.proximos-section,
-.ubicacion-section,
-.recommend-section {
-  content-visibility: auto;
-  contain-intrinsic-size: 0 600px;
-}
+/* ── content-visibility REMOVIDO ────────────────────
+   Causaba que secciones no se renderizaran en móvil.
+   Las secciones debajo del fold ahora siempre renderizan. */
 
 /* ── Eliminate paint-heavy backgrounds on low GPU ──── */
 @media (prefers-reduced-motion: reduce) {
@@ -2791,4 +2780,293 @@ body {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+}
+
+
+/* ════════════════════════════════════════════════════
+   RESPONSIVE COMPLETO — Móvil · Tablet · PC · TV
+   Cubre todos los elementos: stats, reviews, horario,
+   servicios, horario-owner-bar, trabajos, precio, form
+════════════════════════════════════════════════════ */
+
+/* ════════════ TV / PANTALLAS GRANDES (≥ 1600px) ════ */
+@media (min-width: 1600px) {
+  .section          { padding: 120px 80px; }
+  .section-title    { font-size: 3.4rem; }
+  .hero             { padding: 130px 80px 90px; }
+  .hero-logo-img    { width: 260px; height: 260px; }
+  .hero-logo-wrap   { width: 360px; height: 360px; }
+  .horario-grid     { max-width: 1400px; gap: 28px; }
+  .horario-card     { padding: 36px 28px; }
+  .horario-time     { font-size: 1.3rem; }
+  .trabajos-grid    { max-width: 1500px; }
+  .reviews-grid     { max-width: 1500px; }
+  .mega-card        { max-width: 1000px; }
+  .precio-num       { font-size: 8rem !important; }
+  .horario-owner-bar{ max-width: 980px; }
+}
+
+/* ════════════ DESKTOP NORMAL (1025px – 1599px) ═════ */
+@media (min-width: 1025px) and (max-width: 1599px) {
+  .horario-grid     { grid-template-columns: repeat(4, 1fr); }
+  .trabajos-grid    { grid-template-columns: repeat(3, 1fr); }
+  .reviews-grid     { grid-template-columns: repeat(4, 1fr); }
+}
+
+/* ════════════ TABLET (769px – 1024px) ══════════════ */
+@media (min-width: 769px) and (max-width: 1024px) {
+  /* Sección base */
+  .section { padding: 70px 28px; }
+
+  /* Hero */
+  .hero { padding: 110px 28px 60px; }
+  .hero-content { max-width: 100%; text-align: center; }
+  .hero-stats { justify-content: center; }
+  .hero-buttons { justify-content: center; }
+
+  /* Stats */
+  .stat-card { padding: 14px 18px; }
+  .stat-num  { font-size: 1.7rem; }
+
+  /* Horario */
+  .horario-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .horario-card.featured { transform: none; }
+  .horario-card.featured:hover { transform: translateY(-8px); }
+  .horario-owner-bar { flex-wrap: wrap; gap: 12px; justify-content: center; }
+  .horario-live-clock { margin-left: 0; }
+
+  /* Servicios */
+  .service-block        { flex-direction: column; }
+  .service-block.reverse { flex-direction: column; }
+  .mega-card { max-width: 100%; }
+
+  /* Trabajos */
+  .trabajos-grid { grid-template-columns: repeat(2, 1fr); }
+
+  /* Reviews */
+  .reviews-grid { grid-template-columns: repeat(2, 1fr); }
+
+  /* Precio */
+  .precio-hero-card { padding: 40px 28px; }
+  .precio-num { font-size: 5rem !important; }
+
+  /* Proceso */
+  .process-steps { gap: 8px; }
+  .step { min-width: 150px; padding: 24px 16px; }
+
+  /* Footer */
+  .footer-content { grid-template-columns: 1fr 1fr; }
+}
+
+/* ════════════ MÓVIL GRANDE (481px – 768px) ═════════ */
+@media (max-width: 768px) {
+
+  /* ── Base ── */
+  .section { padding: 50px 16px; }
+  .section-header { margin-bottom: 36px; }
+  .section-title { font-size: clamp(1.5rem, 6vw, 2rem); }
+  .section-sub   { font-size: 0.9rem; }
+
+  /* ── Hero ── */
+  .hero { padding: 90px 16px 50px; min-height: auto; }
+  .hero-content { text-align: center; }
+  .title-line { font-size: clamp(2.2rem, 9vw, 3.6rem); }
+  .hero-subtitle { font-size: 1rem; }
+  .hero-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    justify-items: center;
+  }
+  .stat-card { padding: 12px 8px; width: 100%; }
+  .stat-num  { font-size: 1.5rem; }
+  .stat-sym  { font-size: 1rem; }
+  .stat-label { font-size: 0.65rem; }
+  .hero-buttons { flex-direction: column; align-items: center; gap: 10px; }
+  .btn { width: 100%; max-width: 320px; justify-content: center; }
+
+  /* ── Navbar ── */
+  .navbar { padding: 10px 16px; }
+  .logo-text { font-size: 0.85rem; }
+  .nav-logo-img { width: 30px; height: 30px; }
+
+  /* ── Servicios ── */
+  .service-block, .service-block.reverse { flex-direction: column; }
+  .mega-card { padding: 20px 16px; }
+  .card-title-wrap h3 { font-size: 1.1rem; }
+  .service-emoji { font-size: 2rem; }
+  .service-list li { font-size: 0.85rem; padding: 9px 12px; }
+  .win-cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  .win-card  { min-width: unset; padding: 10px 12px; }
+  .win-svg   { width: 36px; height: 36px; }
+  .consolas-logos { flex-direction: column; gap: 12px; }
+  .phone-brands { gap: 6px; }
+  .brand-tag { font-size: 0.73rem; padding: 4px 10px; }
+
+  /* ── Trabajos ── */
+  .trabajos-grid { grid-template-columns: 1fr; gap: 18px; }
+  .trabajo-img-wrap { min-height: 200px; max-height: 260px; }
+
+  /* ── Horario ── */
+  .horario-grid { grid-template-columns: 1fr; gap: 14px; }
+  .horario-card { padding: 22px 16px; }
+  .horario-card.featured { transform: none; }
+  .horario-card.featured:hover { transform: translateY(-6px); }
+  .horario-time { font-size: 1rem; }
+  .horario-emoji { font-size: 2.2rem; }
+  .horario-detail span { font-size: 0.75rem; padding: 6px 9px; }
+  .horario-owner-bar {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 12px;
+    padding: 14px 16px;
+  }
+  .horario-owner-info { align-items: center; }
+  .horario-live-clock { margin-left: 0; width: 100%; justify-content: center; }
+  .live-time { font-size: 1.05rem; }
+  .horario-status-banner { font-size: 0.75rem; padding: 8px 16px; flex-wrap: wrap; justify-content: center; gap: 6px; }
+  .hc-progress-bar { margin-bottom: 12px; }
+  .horario-nota { flex-direction: column; text-align: center; padding: 16px; gap: 10px; }
+  .horario-nota p { min-width: unset; font-size: 0.82rem; }
+
+  /* ── Proceso ── */
+  .process-steps { flex-direction: column; align-items: center; gap: 6px; }
+  .step { max-width: 100%; width: 100%; min-width: unset; padding: 20px 16px; }
+  .step-arrow { transform: rotate(90deg); }
+
+  /* ── Precio ── */
+  .precio-hero-card { padding: 36px 20px; margin: 0 4px; }
+  .precio-num { font-size: clamp(3.5rem, 18vw, 5.5rem) !important; }
+  .precio-currency { font-size: 1.4rem !important; padding-top: 12px; }
+  .precio-equipos { flex-direction: column; align-items: center; gap: 8px; }
+  .precio-equipos span { width: 100%; max-width: 200px; justify-content: center; }
+  /* Quitar anillos orbitando — se salen de pantalla en móvil */
+  .precio-hero-card::before,
+  .precio-hero-card::after { display: none; }
+
+  /* ── Cotizar ── */
+  .cotizar-form { padding: 24px 16px; }
+  .form-row { grid-template-columns: 1fr; }
+
+  /* ── Reseñas ── */
+  .reviews-grid { grid-template-columns: 1fr; gap: 14px; }
+  .review-card { padding: 20px 16px; }
+  .review-text { font-size: 0.83rem; }
+  .rating-widget { padding: 28px 16px; }
+  .star-btn { font-size: 1.9rem; }
+
+  /* ── Steps números ── */
+  .step-icon { font-size: 2rem; }
+  .step h4   { font-size: 0.95rem; }
+  .step p    { font-size: 0.78rem; }
+
+  /* ── Modal ── */
+  .modal-box { padding: 24px 16px; margin: 10px; }
+  .modal-title { font-size: 1.1rem; }
+  .modal-list li { font-size: 0.83rem; padding: 8px 10px; }
+
+  /* ── Próximamente ── */
+  .proximos-section { padding: 50px 16px; }
+  .proximos-grid { flex-direction: column; align-items: center; }
+  .proximo-item { width: 100%; max-width: 360px; justify-content: center; }
+
+  /* ── Ubicación ── */
+  .ubicacion-grid { grid-template-columns: 1fr; gap: 20px; }
+  .ubicacion-map  { min-height: 200px; }
+
+  /* ── CTA ── */
+  .cta-section { padding: 70px 16px; }
+  .cta-title   { font-size: clamp(1.3rem, 5vw, 2rem); }
+  .cta-sub     { font-size: 0.9rem; }
+  .btn-cta     { font-size: 1rem; padding: 14px 28px; width: 100%; max-width: 320px; justify-content: center; }
+
+  /* ── Footer ── */
+  .footer { padding: 40px 16px 16px; }
+  .footer-content { grid-template-columns: 1fr; gap: 24px; }
+  .footer-brand p { font-size: 0.78rem; }
+
+  /* ── Recomendación ── */
+  .recommend-buttons { flex-direction: column; align-items: center; gap: 10px; }
+  .recommend-buttons .btn { width: 100%; max-width: 320px; justify-content: center; }
+
+  /* ── Horario nota ── */
+  .horario-nota .btn { width: 100%; max-width: 300px; justify-content: center; }
+}
+
+/* ════════════ MÓVIL PEQUEÑO (≤ 480px) ══════════════ */
+@media (max-width: 480px) {
+  /* Hero stats en fila compacta */
+  .hero-stats {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+  }
+  .stat-card  { padding: 10px 6px; }
+  .stat-num   { font-size: 1.3rem; }
+  .stat-label { font-size: 0.6rem; }
+
+  /* Título hero más compacto */
+  .title-line { font-size: clamp(2rem, 10vw, 2.8rem); }
+
+  /* Horario owner: stack total */
+  .owner-name  { font-size: 0.85rem; }
+  .owner-role  { font-size: 0.72rem; }
+  .live-time   { font-size: 0.95rem; min-width: 80px; }
+  .live-date   { font-size: 0.62rem; }
+
+  /* Precio gigante adaptado */
+  .precio-num { font-size: clamp(3rem, 20vw, 4.5rem) !important; }
+
+  /* Service list items sin precio inline a la derecha */
+  .svc-item { flex-wrap: wrap; }
+  .price-inline { width: 100%; text-align: right; }
+
+  /* Win cards en 2 col */
+  .win-cards { grid-template-columns: repeat(2, 1fr); }
+
+  /* Reviews grid 1 col */
+  .reviews-grid { grid-template-columns: 1fr; }
+
+  /* Sección padding mínimo */
+  .section { padding: 44px 12px; }
+
+  /* Botones full width */
+  .btn { padding: 13px 20px; font-size: 0.88rem; }
+
+  /* Modal pantalla completa casi */
+  .modal-overlay { padding: 8px; }
+  .modal-box { border-radius: 16px; max-height: 95vh; }
+
+  /* Horario featured sin escala en móvil */
+  .horario-card.featured { transform: none !important; }
+}
+
+/* ════════════ EXTRA PEQUEÑO (≤ 360px) ══════════════ */
+@media (max-width: 360px) {
+  .hero-stats { grid-template-columns: 1fr; gap: 8px; }
+  .stat-card  { flex-direction: row; align-items: center; gap: 10px; justify-content: center; }
+  .title-line { font-size: 1.9rem; }
+  .section-title { font-size: 1.4rem; }
+  .horario-time  { font-size: 0.95rem; }
+  .section { padding: 36px 10px; }
+  .mega-card { padding: 16px 12px; }
+  .precio-num { font-size: clamp(2.8rem, 22vw, 3.8rem) !important; }
+}
+
+/* ════════════ TOUCH — quitar efectos hover pesados ═ */
+@media (hover: none) and (pointer: coarse) {
+  /* En táctil no hay hover, no animar transform en hover */
+  .horario-card:hover    { transform: none !important; }
+  .mega-card:hover       { transform: none !important; box-shadow: var(--shadow-p) !important; }
+  .trabajo-card:hover    { transform: translateY(-4px) !important; }
+  .review-card:hover     { transform: none !important; }
+  .step:hover            { transform: none !important; }
+  .proximo-item:hover    { transform: none !important; }
+  .win-card:hover        { transform: none !important; }
+  /* Los botones sí se ven presionados */
+  .btn:active            { transform: scale(0.97) !important; }
+  .card-btn:active       { transform: scale(0.97) !important; }
+  /* Overlay de trabajos siempre visible un poco en táctil */
+  .trabajo-overlay { opacity: 0; }
+  .trabajo-card:active .trabajo-overlay { opacity: 1; }
 }
