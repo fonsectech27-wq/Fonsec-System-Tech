@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Fonsec System Tech | Soporte Técnico Profesional</title>
+  <link rel="icon" href="images/Logo -  Presentacion.jpeg"/>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<!-- PARTICLES -->
+<div id="particles-bg"></div>
+
+<!-- ════════════════════════════════════════
+     MODAL DE DETALLE DE SERVICIO
+════════════════════════════════════════ -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal-box" id="modalBox">
+    <button class="modal-close" id="modalClose"><i class="fas fa-times"></i></button>
+    <div class="modal-icon" id="modalIcon"></div>
+    <h2 class="modal-title" id="modalTitle"></h2>
+    <p  class="modal-sub"   id="modalSub"></p>
+    <ul class="modal-list"  id="modalList"></ul>
+    <div class="modal-price">
+      <span class="modal-price-label">💰 Diagnóstico desde</span>
+      <span class="modal-price-val">$15.000</span>
+    </div>
+    <a href="https://wa.me/573043469821?text=Hola%20Fonsec%20Necesito%20de%20tu%20ayuda%20con%20un%20equipo"
+       class="btn btn-whatsapp modal-wa" target="_blank" rel="noopener">
+      <i class="fab fa-whatsapp"></i> Solicitar este servicio
+    </a>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════
+     NAVBAR
+════════════════════════════════════════ -->
+<nav class="navbar" id="navbar">
+  <div class="nav-logo">
+    <img src="images/Logo -  Presentacion.jpeg" class="nav-logo-img" alt="Logo Fonsec"/>
+    <span class="logo-text">Fonsec <span class="logo-accent">System Tech</span></span>
+  </div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#inicio"    class="nav-link"><i class="fas fa-home"></i> Inicio</a></li>
+    <li><a href="#servicios" class="nav-link"><i class="fas fa-tools"></i> Servicios</a></li>
+    <li><a href="#trabajos"  class="nav-link"><i class="fas fa-images"></i> Trabajos</a></li>
+    <li><a href="#horario"   class="nav-link"><i class="fas fa-clock"></i> Horario</a></li>
+    <li><a href="#precios"   class="nav-link"><i class="fas fa-tags"></i> Precios</a></li>
+    <li><a href="#cotizar"   class="nav-link"><i class="fas fa-clipboard-list"></i> Cotizar</a></li>
+    <li><a href="#resenas"   class="nav-link"><i class="fas fa-star"></i> Reseñas</a></li>
+    <li><a href="https://wa.me/573043469821?text=Hola%20Fonsec%20Necesito%20de%20tu%20ayuda%20con%20un%20equipo"
+           class="nav-link cta-nav" target="_blank" rel="noopener">
+      <i class="fab fa-whatsapp"></i> WhatsApp
+    </a></li>
+  </ul>
+  <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+</nav>
+
+<!-- ════════════════════════════════════════
+     HERO — logo fijo + stats
+════════════════════════════════════════ -->
+<section class="hero" id="inicio">
+  <div class="hero-glow"></div>
+  <div class="hero-grid"></div>
+
+  <div class="hero-content">
+    <div class="hero-badge"><span class="badge-dot"></span> Servicio Técnico Profesional · Soledad 2000</div>
+    <h1 class="hero-title">
+      <span class="title-line">FONSEC</span>
+      <span class="title-line accent">SYSTEM TECH</span>
+    </h1>
+    <p class="hero-subtitle">
+      Reparamos lo que otros no pueden.<br/>
+      <span class="typewriter" id="typewriter"></span>
+    </p>
+    <div class="hero-stats">
+      <div class="stat-card">
+        <span class="stat-num" id="statEquipos">0</span><span class="stat-sym">+</span>
+        <span class="stat-label">Equipos Reparados</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-num" id="statClientes">0</span><span class="stat-sym">%</span>
+        <span class="stat-label">Clientes Felices</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-num" id="statEstrellas">0</span><span class="stat-sym">★</span>
+        <span class="stat-label">Calificación</span>
+      </div>
+    </div>
+    <div class="hero-buttons">
+      <a href="#servicios" class="btn btn-primary"><i class="fas fa-rocket"></i> Ver Servicios</a>
+      <a href="https://wa.me/573043469821?text=Hola%20Fonsec%20Necesito%20de%20tu%20ayuda%20con%20un%20equipo"
+         class="btn btn-whatsapp" target="_blank" rel="noopener">
+        <i class="fab fa-whatsapp"></i> Contactar Ahora
+      </a>
+    </div>
+  </div>
+
+  <!-- LOGO FIJO CON ANILLOS 4K -->
+  <div class="hero-visual">
+    <div class="hero-logo-wrap">
+      <div class="hero-logo-ring ring1"></div>
+      <div class="hero-logo-ring ring2"></div>
+      <div class="hero-logo-ring ring3"></div>
+      <div class="hero-logo-ring ring4"></div>
+      <div class="hero-logo-glow-outer"></div>
+      <img src="images/Logo -  Presentacion.jpeg" class="hero-logo-img" alt="Fonsec System Tech"/>
+      <div class="hero-logo-scanline"></div>
+    </div>
+  </div>
+
+  <div class="scroll-indicator"><span>Scroll</span><div class="scroll-line"></div></div>
+</section>
+
+<!-- ════════════════════════════════════════
+     SERVICIOS
+════════════════════════════════════════ -->
+<section class="section servicios" id="servicios">
+  <div class="section-header reveal">
+    <span class="section-tag">¿Qué hacemos?</span>
+    <h2 class="section-title">Nuestros <span class="accent">Servicios</span></h2>
+    <p class="section-sub">Haz clic en cualquier servicio para ver todos los detalles</p>
+  </div>
+
+  <!-- PC & LAPTOPS -->
+  <div class="service-block reveal">
+    <div class="service-label-side">01</div>
+    <div class="service-card mega-card" data-tilt>
+      <div class="card-glow"></div>
+      <div class="card-header">
+        <div class="service-icon-wrap"><span class="service-emoji">🖥️</span><div class="icon-ring"></div></div>
+        <div class="card-title-wrap">
+          <h3>PC &amp; Laptops</h3>
+          <span class="card-tag">Mantenimiento Completo</span>
+        </div>
+      </div>
+      <div class="card-body">
+        <ul class="service-list">
+          <li class="svc-item" data-svc="pc-preventivo">
+            <span class="list-icon">🔧</span><span>Mantenimiento Preventivo</span>
+            <span class="svc-arrow"><i class="fas fa-chevron-right"></i></span>
+          </li>
+          <li class="svc-item" data-svc="pc-correctivo">
+            <span class="list-icon">🛠️</span><span>Mantenimiento Correctivo</span>
+            <span class="svc-arrow"><i class="fas fa-chevron-right"></i></span>
+          </li>
+          <li class="svc-item" data-svc="pc-diagnostico">
+            <span class="list-icon">🔍</span><span>Diagnóstico de Fallas</span>
+            <strong class="price-inline">$15.000</strong>
+            <span class="svc-arrow"><i class="fas fa-chevron-right"></i></span>
+          </li>
+          <li class="svc-item" data-svc="pc-windows">
+            <span class="list-icon">💿</span><span>Instalación Windows 7 al 11</span>
+            <span class="svc-arrow"><i class="fas fa-chevron-right"></i></span>
+          </li>
+          <li class="svc-item" data-svc="pc-recuperacion">
+            <span class="list-icon">💾</span><span>Recuperación de Archivos</span>
+            <span class="svc-arrow"><i class="fas fa-chevron-right"></i></span>
+          </li>
+          <li class="svc-item" data-svc="pc-formateo">
+            <span class="list-icon">🧹</span><span>Formateo Completo</span>
+            <span class="svc-arrow"><i class="fas fa-chevron-right"></i></span>
+          </li>
+          <li class="svc-item" data-svc="pc-office">
+            <span class="list-icon">📦</span><span>Paquete Office Original</span>
+            <span class="svc-arrow"><i class="fas fa-chevron-right"></i></span>
+          </li>
+          <li class="svc-item" data-svc="pc-optimizacion">
+            <span class="list-icon">⚡</span><span>PC Optimizado al Máximo</span>
+            <span class="svc-arrow"><i class="fas fa-chevron-right"></i></span>
+          </li>
+        </ul>
+        <div class="windows-grid">
+          <h4 class="windows-title"><i class="fab fa-windows"></i> Sistemas Operativos Disponibles</h4>
+          <div class="win-cards">
+            <div class="win-card" data-version="7">
+              <svg class="win-svg" viewBox="0 0 88 88"><defs><linearGradient id="g7a" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#4db8ff"/><stop offset="100%" stop-color="#0067b8"/></linearGradient><linearGradient id="g7b" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#66c6ff"/><stop offset="100%" stop-color="#0090d9"/></linearGradient></defs><rect x="4" y="4" width="38" height="38" rx="4" fill="url(#g7a)"/><rect x="46" y="4" width="38" height="38" rx="4" fill="url(#g7b)"/><rect x="4" y="46" width="38" height="38" rx="4" fill="url(#g7b)"/><rect x="46" y="46" width="38" height="38" rx="4" fill="url(#g7a)"/></svg>
+              <span>Windows 7</span>
+            </div>
+            <div class="win-card" data-version="8">
+              <svg class="win-svg" viewBox="0 0 88 88"><defs><linearGradient id="g8" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#00bcf2"/><stop offset="100%" stop-color="#0078d4"/></linearGradient></defs><rect x="4" y="4" width="38" height="38" rx="2" fill="url(#g8)"/><rect x="46" y="4" width="38" height="38" rx="2" fill="url(#g8)"/><rect x="4" y="46" width="38" height="38" rx="2" fill="url(#g8)"/><rect x="46" y="46" width="38" height="38" rx="2" fill="url(#g8)"/></svg>
+              <span>Windows 8</span>
+            </div>
+            <div class="win-card" data-version="10">
+              <svg class="win-svg" viewBox="0 0 88 88"><defs><linearGradient id="g10" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#0078d4"/><stop offset="100%" stop-color="#005a9e"/></linearGradient></defs><rect x="4" y="4" width="38" height="38" fill="url(#g10)"/><rect x="46" y="4" width="38" height="38" fill="url(#g10)"/><rect x="4" y="46" width="38" height="38" fill="url(#g10)"/><rect x="46" y="46" width="38" height="38" fill="url(#g10)"/></svg>
+              <span>Windows 10</span>
+            </div>
+            <div class="win-card" data-version="11">
+              <svg class="win-svg" viewBox="0 0 88 88"><defs><linearGradient id="g11" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#0067b8"/><stop offset="50%" stop-color="#2255dd"/><stop offset="100%" stop-color="#8b2fc9"/></linearGradient></defs><rect x="4" y="4" width="38" height="38" rx="6" fill="url(#g11)"/><rect x="46" y="4" width="38" height="38" rx="6" fill="url(#g11)"/><rect x="4" y="46" width="38" height="38" rx="6" fill="url(#g11)"/><rect x="46" y="46" width="38" height="38" rx="6" fill="url(#g11)"/></svg>
+              <span>Windows 11</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a href="https://wa.me/573043469821?text=Hola%20Fonsec%20Necesito%20de%20tu%20ayuda%20con%20un%20equipo" class="card-btn" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> Solicitar Servicio</a>
+    </div>
+  </div>
+
+  <!-- CONSOLAS -->
+  <div class="service-block reverse reveal">
+    <div class="service-label-side">02</div>
+    <div class="service-card mega-card" data-tilt>
+      <div class="card-glow glow-purple"></div>
+      <div class="card-header">
+        <div class="service-icon-wrap"><span class="service-emoji">🎮</span><div class="icon-ring ring-purple"></div></div>
+        <div class="card-title-wrap">
+          <h3>Consolas de Videojuegos</h3>
+          <span class="card-tag tag-purple">Xbox &amp; PlayStation</span>
+        </div>
+      </div>
+      <div class="card-body">
+        <ul class="service-list">
+          <li class="svc-item" data-svc="con-xbox1">
+            <span class="list-icon">🕹️</span><span>Xbox One – Mantenimiento Completo</span>
+            <span class="svc-arrow"><i class="fas fa-chevron-right"></i></span>
+          </li>
+          <li class="svc-item" data-svc="con-xbox360">
+            <span class="list-icon">🕹️</span><span>Xbox 360 – Mantenimiento Completo</span>
+            <span class="svc-arrow"><i class="fas fa-chevron-right"></i></span>
+          </li>
+          <li class="svc-item" data-svc="con-ps">
+            <span class="list-icon">🎮</span><span>PlayStation – Mantenimiento Completo</span>
+            <span class="svc-arrow"><i class="fas fa-chevron-right"></i></span>
+          </li>
+          <li class="svc-item" data-svc="con-joystick">
+            <span class="list-icon">🔧</span><span>Cambio de Joystick / Control</span>
+            <span class="svc-arrow"><i class="fas fa-chevron-right"></i></span>
+          </li>
+          <li class="svc-item" data-svc="con-diagnostico">
+            <span class="list-icon">🔍</span><span>Diagnóstico de Fallas</span>
+            <strong class="price-inline">$15.000</strong>
+            <span class="svc-arrow"><i class="fas fa-chevron-right"></i></span>
+          </li>
+          <li class="svc-item" data-svc="con-limpieza">
+            <span class="list-icon">🧼</span><span>Limpieza Interna Profunda</span>
+            <span class="svc-arrow"><i class="fas fa-chevron-right"></i></span>
+          </li>
+        </ul>
+        <div class="consolas-logos">
+          <div class="consola-logo xbox"><i class="fab fa-xbox"></i><span>Xbox</span></div>
+          <div class="consola-logo ps"><i class="fab fa-playstation"></i><span>PlayStation</span></div>
+        </div>
+      </div>
+      <a href="https://wa.me/573043469821?text=Hola%20Fonsec%20Necesito%20de%20tu%20ayuda%20con%20un%20equipo" class="card-btn btn-purple" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> Solicitar Servicio</a>
+    </div>
+  </div>
+
+  <!-- CELULARES -->
+  <div class="service-block reveal">
+    <div class="service-label-side">03</div>
+    <div class="service-card mega-card" data-tilt>
+      <div class="card-glow glow-green"></div>
+      <div class="card-header">
+        <div class="service-icon-wrap"><span class="service-emoji">📱</span><div class="icon-ring ring-green"></div></div>
+        <div class="card-title-wrap">
+          <h3>Celulares &amp; Smartphones</h3>
+          <span class="card-tag tag-green">Servicio Técnico</span>
+        </div>
+      </div>
+      <div class="card-body">
+        <ul class="service-list">
+          <li class="svc-item" data-svc="cel-pantalla">
+            <span class="list-icon">📺</span><span>Cambio de Pantalla</span>
+            <span class="svc-arrow"><i class="fas fa-chevron-right"></i></span>
+          </li>
+          <li class="svc-item" data-svc="cel-pin">
+            <span class="list-icon">🔌</span><span>Cambio de Pin de Carga</span>
+            <span class="svc-arrow"><i class="fas fa-chevron-right"></i></span>
+          </li>
+          <li class="svc-item" data-svc="cel-bateria">
+            <span class="list-icon">🔋</span><span>Cambio de Batería</span>
+            <span class="svc-arrow"><i class="fas fa-chevron-right"></i></span>
+          </li>
+          <li class="svc-item" data-svc="cel-diagnostico">
+            <span class="list-icon">🔍</span><span>Diagnóstico Completo</span>
+            <strong class="price-inline">$15.000</strong>
+            <span class="svc-arrow"><i class="fas fa-chevron-right"></i></span>
+          </li>
+        </ul>
+        <div class="phone-brands">
+          <span class="brand-tag">📱 Samsung</span>
+          <span class="brand-tag">📱 Motorola</span>
+          <span class="brand-tag">📱 Xiaomi</span>
+          <span class="brand-tag">📱 Huawei</span>
+          <span class="brand-tag">📱 LG</span>
+          <span class="brand-tag">📱 Nokia</span>
+        </div>
+      </div>
+      <a href="https://wa.me/573043469821?text=Hola%20Fonsec%20Necesito%20de%20tu%20ayuda%20con%20un%20equipo" class="card-btn btn-green" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> Solicitar Servicio</a>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     SERVICIOS MÁS RECIBIDOS (GALERÍA)
+════════════════════════════════════════ -->
+<section class="section trabajos-section" id="trabajos">
+  <div class="section-header reveal">
+    <span class="section-tag">Trabajo Real</span>
+    <h2 class="section-title">Servicios Más Recibidos por <span class="accent">Fonsec Tech</span></h2>
+    <p class="section-sub">Imágenes reales de nuestros trabajos — transparencia total</p>
+  </div>
+
+  <div class="trabajos-grid">
+
+    <div class="trabajo-card reveal" data-delay="0">
+      <div class="trabajo-img-wrap">
+        <img src="images/Logo -  Presentacion.jpeg" alt="Fonsec System Tech"/>
+        <div class="trabajo-overlay">
+          <div class="to-icon">🏢</div>
+          <h5>¿Por qué elegirnos?</h5>
+          <ul class="to-list">
+            <li>✅ Técnico certificado con años de experiencia</li>
+            <li>✅ Recogemos tu equipo a domicilio</li>
+            <li>✅ Diagnóstico honesto desde $15.000</li>
+            <li>✅ Garantía en todos los trabajos</li>
+          </ul>
+        </div>
+      </div>
+      <div class="trabajo-info">
+        <span class="trabajo-tag">🏢 Empresa</span>
+        <h4>Fonsec System Tech</h4>
+        <p>Soporte Técnico en Computadores y Electrónica · Soledad 2000</p>
+      </div>
+    </div>
+
+    <div class="trabajo-card reveal" data-delay="100">
+      <div class="trabajo-img-wrap">
+        <img src="images/Servicios.jpeg" alt="Top 3 Servicios"/>
+        <div class="trabajo-overlay">
+          <div class="to-icon">⭐</div>
+          <h5>Servicios más pedidos</h5>
+          <ul class="to-list">
+            <li>🔧 Mantenimiento preventivo completo</li>
+            <li>🔍 Diagnóstico preciso de fallas</li>
+            <li>💿 Instalación de Windows limpia</li>
+            <li>⚡ Resultados el mismo día</li>
+          </ul>
+        </div>
+      </div>
+      <div class="trabajo-info">
+        <span class="trabajo-tag">⭐ Más Solicitados</span>
+        <h4>Los 3 Servicios Top</h4>
+        <p>Mantenimiento Preventivo · Diagnóstico · Instalación de Sistemas</p>
+      </div>
+    </div>
+
+    <div class="trabajo-card reveal" data-delay="200">
+      <div class="trabajo-img-wrap">
+        <img src="images/Pc Gamers.jpeg" alt="PC Gamer Armado"/>
+        <div class="trabajo-overlay">
+          <div class="to-icon">🎮</div>
+          <h5>Armado PC Gamer</h5>
+          <ul class="to-list">
+            <li>🖥️ Ensamble profesional de hardware</li>
+            <li>💡 Configuración RGB personalizada</li>
+            <li>⚙️ Optimización de BIOS y drivers</li>
+            <li>🎯 Pruebas de rendimiento incluidas</li>
+          </ul>
+        </div>
+      </div>
+      <div class="trabajo-info">
+        <span class="trabajo-tag">🎮 PC Gamer</span>
+        <h4>Armado de PC Gamer RGB</h4>
+        <p>Ensamble y configuración profesional de PC Gamer con iluminación RGB</p>
+      </div>
+    </div>
+
+    <div class="trabajo-card reveal" data-delay="300">
+      <div class="trabajo-img-wrap">
+        <img src="images/Mantenimiento Laptop No Prende Diagnostico.jpeg" alt="Diagnóstico Laptop"/>
+        <div class="trabajo-overlay">
+          <div class="to-icon">🔍</div>
+          <h5>¿PC no enciende?</h5>
+          <ul class="to-list">
+            <li>🔌 Revisión de fuente de poder</li>
+            <li>🧠 Diagnóstico de tarjeta madre</li>
+            <li>💾 Verificación de RAM y disco</li>
+            <li>📋 Informe detallado con solución</li>
+          </ul>
+        </div>
+      </div>
+      <div class="trabajo-info">
+        <span class="trabajo-tag">🔍 Diagnóstico</span>
+        <h4>PC no Prende — Diagnóstico</h4>
+        <p>Revisión completa de tarjeta madre, diagnóstico de fallas de hardware</p>
+      </div>
+    </div>
+
+    <div class="trabajo-card reveal" data-delay="400">
+      <div class="trabajo-img-wrap">
+        <img src="images/Mantenimiento Correctivo.jpeg" alt="Mantenimiento Correctivo"/>
+        <div class="trabajo-overlay">
+          <div class="to-icon">🌡️</div>
+          <h5>Mantenimiento Correctivo</h5>
+          <ul class="to-list">
+            <li>🌡️ Pasta térmica de alta calidad</li>
+            <li>💨 Limpieza profunda de ventiladores</li>
+            <li>🔩 Revisión de tornillería y caps</li>
+            <li>📊 -15°C de temperatura promedio</li>
+          </ul>
+        </div>
+      </div>
+      <div class="trabajo-info">
+        <span class="trabajo-tag">🌡️ Correctivo</span>
+        <h4>Mantenimiento Correctivo</h4>
+        <p>Cambio de pasta térmica profesional y limpieza interna profunda</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     HORARIO — VERSIÓN 4K PREMIUM
+════════════════════════════════════════ -->
+<section class="section horario-section" id="horario">
+
+  <!-- Fondo animado exclusivo de la sección -->
+  <div class="horario-bg-aura"></div>
+  <div class="horario-grid-lines"></div>
+
+  <div class="section-header reveal">
+    <span class="section-tag">¿Cuándo atendemos?</span>
+    <h2 class="section-title">Nuestro <span class="accent">Horario</span></h2>
+
+    <!-- DUEÑO + RELOJ EN VIVO -->
+    <div class="horario-owner-bar">
+      <div class="horario-owner-avatar">
+        <img src="images/Logo -  Presentacion.jpeg" alt="Fonsec" class="owner-avatar-img"/>
+        <span class="owner-online-dot"></span>
+      </div>
+      <div class="horario-owner-info">
+        <span class="owner-name">👤 Fonsec System Tech</span>
+        <span class="owner-role">🏢 Dueño &amp; Técnico Principal</span>
+      </div>
+      <div class="horario-live-clock">
+        <div class="live-clock-icon"><i class="fas fa-satellite-dish"></i></div>
+        <div class="live-clock-data">
+          <span class="live-time" id="liveTime">--:-- --</span>
+          <span class="live-date" id="liveDate">--- · ---</span>
+        </div>
+        <div class="live-pulse-ring"></div>
+      </div>
+    </div>
+
+    <!-- BANNER ESTADO GENERAL EN TIEMPO REAL -->
+    <div class="horario-status-banner" id="horarioStatusBanner">
+      <div class="status-banner-glow"></div>
+      <span class="status-banner-dot" id="statusBannerDot"></span>
+      <span class="status-banner-text" id="statusBannerText">Calculando horario...</span>
+      <span class="status-banner-next" id="statusBannerNext"></span>
+    </div>
+  </div>
+
+  <!-- GRID DE CARDS -->
+  <div class="horario-grid reveal">
+
+    <!-- LUNES — JUEVES -->
+    <div class="horario-card hc-lunjue" data-schedule="lun-jue" data-open-h="14" data-open-m="30" data-close-h="17" data-close-m="0" data-days="1,2,3,4">
+      <div class="hc-top-bar"></div>
+      <div class="hc-live-indicator" id="hc-live-lunjue">
+        <span class="hc-live-dot"></span>
+        <span class="hc-live-label">EN VIVO</span>
+      </div>
+      <div class="horario-day-badge">📅 Lunes — Jueves</div>
+      <div class="hc-emoji-wrap">
+        <div class="hc-emoji-ring"></div>
+        <span class="horario-emoji">🌆</span>
+      </div>
+      <div class="horario-time" id="ht-lunjue">2:30 PM — 5:00 PM</div>
+      <div class="hc-progress-bar">
+        <div class="hc-progress-fill" id="hpf-lunjue"></div>
+      </div>
+      <div class="horario-detail">
+        <span><i class="fas fa-clock"></i> Atención de tarde</span>
+        <span><i class="fas fa-tools"></i> Recepción y entrega de equipos</span>
+        <span><i class="fas fa-comments"></i> Asesoría personalizada</span>
+        <span><i class="fas fa-shield-alt"></i> Garantía en todo trabajo</span>
+      </div>
+      <div class="horario-status" id="hs-lunjue">
+        <span class="status-dot"></span> <span class="hs-text">Disponible</span>
+      </div>
+    </div>
+
+    <!-- VIERNES — MEJOR DÍA -->
+    <div class="horario-card featured hc-viernes" data-schedule="viernes" data-open-h="9" data-open-m="0" data-close-h="16" data-close-m="30" data-days="5">
+      <div class="hc-top-bar featured-bar"></div>
+      <div class="horario-featured-label">⭐ Mejor día</div>
+      <div class="hc-live-indicator" id="hc-live-viernes">
+        <span class="hc-live-dot"></span>
+        <span class="hc-live-label">EN VIVO</span>
+      </div>
+      <div class="horario-day-badge">📅 Viernes</div>
+      <div class="hc-emoji-wrap">
+        <div class="hc-emoji-ring ring-featured"></div>
+        <span class="horario-emoji">🔥</span>
+      </div>
+      <div class="horario-time" id="ht-viernes">9:00 AM — 4:30 PM</div>
+      <div class="hc-progress-bar">
+        <div class="hc-progress-fill featured-fill" id="hpf-viernes"></div>
+      </div>
+      <div class="horario-detail">
+        <span><i class="fas fa-star"></i> Jornada completa (7.5 hrs)</span>
+        <span><i class="fas fa-tools"></i> Servicio técnico completo</span>
+        <span><i class="fas fa-car"></i> Recogemos tu equipo a domicilio</span>
+        <span><i class="fas fa-bolt"></i> Mayor disponibilidad del día</span>
+        <span><i class="fas fa-headset"></i> Atención prioritaria</span>
+      </div>
+      <div class="horario-status" id="hs-viernes">
+        <span class="status-dot"></span> <span class="hs-text">Disponible</span>
+      </div>
+    </div>
+
+    <!-- SÁBADO -->
+    <div class="horario-card hc-sabado" data-schedule="sabado" data-open-h="9" data-open-m="0" data-close-h="15" data-close-m="30" data-days="6">
+      <div class="hc-top-bar bar-green"></div>
+      <div class="hc-live-indicator" id="hc-live-sabado">
+        <span class="hc-live-dot"></span>
+        <span class="hc-live-label">EN VIVO</span>
+      </div>
+      <div class="horario-day-badge">📅 Sábado</div>
+      <div class="hc-emoji-wrap">
+        <div class="hc-emoji-ring ring-green"></div>
+        <span class="horario-emoji">🌤️</span>
+      </div>
+      <div class="horario-time" id="ht-sabado">9:00 AM — 3:30 PM</div>
+      <div class="hc-progress-bar">
+        <div class="hc-progress-fill green-fill" id="hpf-sabado"></div>
+      </div>
+      <div class="horario-detail">
+        <span><i class="fas fa-clock"></i> Media jornada (6.5 hrs)</span>
+        <span><i class="fas fa-tools"></i> Recepción de equipos</span>
+        <span><i class="fas fa-comments"></i> Diagnósticos express</span>
+        <span><i class="fas fa-check-circle"></i> Entregas de trabajos listos</span>
+      </div>
+      <div class="horario-status" id="hs-sabado">
+        <span class="status-dot"></span> <span class="hs-text">Disponible</span>
+      </div>
+    </div>
+
+    <!-- DOMINGO — CERRADO -->
+    <div class="horario-card closed hc-domingo" data-schedule="domingo" data-days="0">
+      <div class="hc-top-bar bar-closed"></div>
+      <div class="horario-day-badge closed-badge">📅 Domingo</div>
+      <div class="hc-emoji-wrap">
+        <div class="hc-emoji-ring ring-closed"></div>
+        <span class="horario-emoji" style="filter:grayscale(1)">😴</span>
+      </div>
+      <div class="horario-time closed-time">Cerrado</div>
+      <div class="horario-detail">
+        <span><i class="fas fa-moon"></i> Día de descanso</span>
+        <span><i class="fab fa-whatsapp"></i> WhatsApp disponible 24/7</span>
+        <span><i class="fas fa-calendar-alt"></i> Agenda cita para el lunes</span>
+        <span><i class="fas fa-bell"></i> Urgencias por mensaje</span>
+      </div>
+      <div class="horario-status closed-status">
+        <span class="status-dot closed-dot"></span> <span class="hs-text">Cerrado hoy</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="horario-nota reveal">
+    <i class="fas fa-info-circle"></i>
+    <p>¿Urgencia fuera del horario? Escríbenos por WhatsApp y te atendemos lo antes posible.</p>
+    <a href="https://wa.me/573043469821?text=Hola%20Fonsec%20Necesito%20de%20tu%20ayuda%20con%20un%20equipo"
+       class="btn btn-whatsapp" target="_blank" rel="noopener">
+      <i class="fab fa-whatsapp"></i> Escribir ahora
+    </a>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     CÓMO FUNCIONA
+════════════════════════════════════════ -->
+<section class="section process-section">
+  <div class="section-header reveal">
+    <span class="section-tag">Simple y Rápido</span>
+    <h2 class="section-title">¿Cómo <span class="accent">Funciona?</span></h2>
+  </div>
+  <div class="process-steps">
+    <div class="step reveal"><div class="step-icon">📞</div><div class="step-num">01</div><h4>Contáctanos</h4><p>Escríbenos por WhatsApp.</p></div>
+    <div class="step-arrow"><i class="fas fa-chevron-right"></i></div>
+    <div class="step reveal"><div class="step-icon">🚗</div><div class="step-num">02</div><h4>Recogemos</h4><p>Vamos a tu casa en Soledad 2000.</p></div>
+    <div class="step-arrow"><i class="fas fa-chevron-right"></i></div>
+    <div class="step reveal"><div class="step-icon">🔬</div><div class="step-num">03</div><h4>Diagnóstico</h4><p>Revisamos en laboratorio. Solo <strong>$15.000</strong>.</p></div>
+    <div class="step-arrow"><i class="fas fa-chevron-right"></i></div>
+    <div class="step reveal"><div class="step-icon">✅</div><div class="step-num">04</div><h4>Entrega</h4><p>Te entregamos reparado o lo recoges.</p></div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     PRECIOS
+════════════════════════════════════════ -->
+<section class="section precios-section" id="precios">
+  <div class="section-header reveal">
+    <span class="section-tag">Transparencia Total</span>
+    <h2 class="section-title">Precio de <span class="accent">Diagnóstico</span></h2>
+    <p class="section-sub">Sin importar el equipo, el diagnóstico tiene un único precio</p>
+  </div>
+  <div class="precio-hero-card reveal">
+    <div class="precio-glow"></div>
+    <div class="precio-badge">🔥 Precio Único</div>
+    <div class="precio-amount">
+      <span class="precio-currency">$</span>
+      <span class="precio-num">15.000</span>
+    </div>
+    <p class="precio-desc">Diagnóstico completo para <strong>TODOS</strong> los equipos:</p>
+    <div class="precio-equipos">
+      <span><i class="fas fa-desktop"></i> PC &amp; Laptop</span>
+      <span><i class="fas fa-gamepad"></i> Consolas</span>
+      <span><i class="fas fa-mobile-alt"></i> Celulares</span>
+    </div>
+    <p class="precio-note"><i class="fas fa-info-circle"></i> Incluye revisión completa y cotización del servicio.</p>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     COTIZAR
+════════════════════════════════════════ -->
+<section class="section cotizar-section" id="cotizar">
+  <div class="section-header reveal">
+    <span class="section-tag">Fácil y Rápido</span>
+    <h2 class="section-title">Solicita tu <span class="accent">Cotización</span></h2>
+    <p class="section-sub">Déjanos tus datos y te contactamos a la brevedad</p>
+  </div>
+  <div class="form-container reveal">
+    <div class="form-glow"></div>
+    <form class="cotizar-form" id="cotizarForm">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="nombre"><i class="fas fa-user"></i> Tu Nombre</label>
+          <input type="text" id="nombre" placeholder="Ej: Juan García" required/>
+        </div>
+        <div class="form-group">
+          <label for="telefono"><i class="fas fa-phone"></i> Teléfono</label>
+          <input type="tel" id="telefono" placeholder="Ej: 301 234 5678" required/>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="equipo"><i class="fas fa-laptop"></i> Tipo de Equipo</label>
+        <select id="equipo" required>
+          <option value="">Selecciona un equipo...</option>
+          <option value="pc">🖥️ PC de Escritorio</option>
+          <option value="laptop">💻 Laptop / Portátil</option>
+          <option value="xbox">🎮 Xbox (One / 360)</option>
+          <option value="playstation">🎮 PlayStation</option>
+          <option value="celular">📱 Celular / Smartphone</option>
+          <option value="otro">🔧 Otro</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="descripcion"><i class="fas fa-comment-alt"></i> Describe el problema</label>
+        <textarea id="descripcion" rows="4" placeholder="Cuéntanos qué le pasa a tu equipo..." required></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary btn-submit">
+        <i class="fas fa-paper-plane"></i> Enviar Cotización
+      </button>
+    </form>
+    <div class="form-success" id="formSuccess">
+      <div class="success-icon">✅</div>
+      <h3>¡Cotización Enviada!</h3>
+      <p>Nos pondremos en contacto muy pronto.</p>
+      <a href="https://wa.me/573043469821?text=Hola%20Fonsec%20Necesito%20de%20tu%20ayuda%20con%20un%20equipo"
+         class="btn btn-whatsapp" target="_blank" rel="noopener">
+        <i class="fab fa-whatsapp"></i> Ir a WhatsApp
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     RESEÑAS
+════════════════════════════════════════ -->
+<section class="section resenas-section" id="resenas">
+  <div class="section-header reveal">
+    <span class="section-tag">Opiniones Reales</span>
+    <h2 class="section-title">Nuestras <span class="accent">Reseñas</span></h2>
+    <p class="section-sub">¿Ya usaste nuestro servicio? ¡Califica tu experiencia!</p>
+  </div>
+  <div class="rating-widget reveal">
+    <div class="rating-glow"></div>
+    <h3 class="rating-title">¿Cómo calificarías nuestro servicio?</h3>
+    <p class="rating-sub">Toca las estrellas para calificar</p>
+    <div class="stars-input" id="starsInput">
+      <span class="star-btn" data-value="1"><i class="fas fa-star"></i></span>
+      <span class="star-btn" data-value="2"><i class="fas fa-star"></i></span>
+      <span class="star-btn" data-value="3"><i class="fas fa-star"></i></span>
+      <span class="star-btn" data-value="4"><i class="fas fa-star"></i></span>
+      <span class="star-btn" data-value="5"><i class="fas fa-star"></i></span>
+    </div>
+    <p class="rating-label" id="ratingLabel">Sin calificar</p>
+    <div class="rating-comment-wrap" id="ratingCommentWrap" style="display:none">
+      <input type="text" class="rating-comment-input" id="ratingComment" placeholder="Escribe un comentario (opcional)..."/>
+      <button class="btn btn-primary btn-rate" id="submitRating"><i class="fas fa-check"></i> Enviar Reseña</button>
+    </div>
+  </div>
+
+  <div class="reviews-grid" id="reviewsGrid">
+    <div class="review-card reveal"><div class="review-stars">★★★★★</div><p class="review-text">"Me arreglaron el laptop en tiempo récord. Excelente servicio, muy profesionales y el precio fue justo."</p><div class="review-author"><div class="review-avatar">👨</div><div><span class="review-name">Carlos Martínez</span><span class="review-service">💻 Laptop</span></div></div></div>
+    <div class="review-card reveal"><div class="review-stars">★★★★★</div><p class="review-text">"Cambio de pantalla del celular en el mismo día. Quedó como nuevo, súper rápido y económico."</p><div class="review-author"><div class="review-avatar">👩</div><div><span class="review-name">Marcela Rodríguez</span><span class="review-service">📱 Celular</span></div></div></div>
+    <div class="review-card reveal"><div class="review-stars">★★★★★</div><p class="review-text">"Mi Xbox One tenía el control dañado. Lo repararon rápido y con garantía. Este técnico sí sabe."</p><div class="review-author"><div class="review-avatar">🎮</div><div><span class="review-name">Andrés Pedraza</span><span class="review-service">🎮 Xbox</span></div></div></div>
+    <div class="review-card reveal"><div class="review-stars">★★★★★</div><p class="review-text">"Formateo e instalación de Windows 11 sin problema. El PC quedó volando. Muy profesional."</p><div class="review-author"><div class="review-avatar">👨‍💼</div><div><span class="review-name">Diego Fuentes</span><span class="review-service">🖥️ PC Escritorio</span></div></div></div>
+    <div class="review-card reveal"><div class="review-stars">★★★★★</div><p class="review-text">"Cambio de batería rápido, garantizado y fueron a buscar el equipo a mi casa. Comodísimo."</p><div class="review-author"><div class="review-avatar">👩‍💻</div><div><span class="review-name">Valentina Torres</span><span class="review-service">📱 Celular</span></div></div></div>
+    <div class="review-card reveal"><div class="review-stars">★★★★★</div><p class="review-text">"Cambio de pasta térmica y limpieza profunda. El PC que antes se calentaba horrible ahora funciona perfecto."</p><div class="review-author"><div class="review-avatar">🧔</div><div><span class="review-name">Ramiro Ospina</span><span class="review-service">💻 Laptop</span></div></div></div>
+    <div class="review-card reveal"><div class="review-stars">★★★★★</div><p class="review-text">"Excelente atención. Diagnóstico rápido y me explicaron todo detalladamente. Precios honestos."</p><div class="review-author"><div class="review-avatar">👩‍🦱</div><div><span class="review-name">Patricia Gómez</span><span class="review-service">🖥️ PC</span></div></div></div>
+    <div class="review-card reveal"><div class="review-stars">★★★★★</div><p class="review-text">"Mi PlayStation no encendía. Fonsec lo revisó, encontró el problema y lo reparó ese mismo día."</p><div class="review-author"><div class="review-avatar">🎮</div><div><span class="review-name">Luis Vargas</span><span class="review-service">🎮 PlayStation</span></div></div></div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     PRÓXIMAMENTE
+════════════════════════════════════════ -->
+<section class="section proximos-section">
+  <div class="proximos-content reveal">
+    <div class="proximos-badge">🚀 Muy Pronto</div>
+    <h2>Nuevos Servicios en Camino</h2>
+    <div class="proximos-grid">
+      <div class="proximo-item"><span class="proximo-icon">🖨️</span><span>Diagnóstico y Reparación de <strong>Impresoras</strong></span></div>
+      <div class="proximo-item"><span class="proximo-icon">📱</span><span>Diagnóstico Profundo de <strong>Fallas de Celulares</strong></span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     UBICACIÓN
+════════════════════════════════════════ -->
+<section class="section ubicacion-section" id="contacto">
+  <div class="section-header reveal">
+    <span class="section-tag">¿Dónde estamos?</span>
+    <h2 class="section-title">Ubicación &amp; <span class="accent">Contacto</span></h2>
+  </div>
+  <div class="ubicacion-grid">
+    <div class="ubicacion-info reveal">
+      <div class="info-item"><div class="info-icon"><i class="fas fa-map-marker-alt"></i></div><div><h4>Ubicación</h4><p>Soledad 2000, Atlántico, Colombia</p></div></div>
+      <div class="info-item"><div class="info-icon"><i class="fab fa-whatsapp"></i></div><div><h4>WhatsApp</h4><a href="https://wa.me/573043469821?text=Hola%20Fonsec%20Necesito%20de%20tu%20ayuda%20con%20un%20equipo" target="_blank" rel="noopener">+57 304 346 9821</a></div></div>
+      <div class="info-item"><div class="info-icon"><i class="fas fa-car"></i></div><div><h4>Recogemos tu equipo</h4><p>Vamos a tu casa, reparamos en laboratorio y te lo entregamos.</p></div></div>
+      <div class="info-item"><div class="info-icon"><i class="fas fa-store"></i></div><div><h4>Presencial</h4><p>También puedes traer tu equipo directamente.</p></div></div>
+      <a href="https://wa.me/573043469821?text=Hola%20Fonsec%20Necesito%20de%20tu%20ayuda%20con%20un%20equipo" class="btn btn-whatsapp" style="margin-top:10px;justify-content:center;" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> Escribir por WhatsApp</a>
+    </div>
+    <div class="ubicacion-map reveal">
+      <div class="map-placeholder"><i class="fas fa-map-marked-alt"></i><p>Soledad 2000<br/>Atlántico, Colombia</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     CTA FINAL
+════════════════════════════════════════ -->
+<section class="cta-section">
+  <div class="cta-bg"></div>
+  <div class="cta-content">
+    <div class="cta-icon">⚡</div>
+    <h2 class="cta-title">"No importa qué tan dañado esté —<br/><span class="cta-accent">nosotros lo resolvemos.</span>"</h2>
+    <p class="cta-sub">Un técnico serio, honesto y que cobra justo. Cada equipo que entra a nuestro laboratorio sale con el trabajo hecho y el cliente satisfecho. <strong>Eso es Fonsec System Tech.</strong></p>
+    <a href="https://wa.me/573043469821?text=Hola%20Fonsec%20Necesito%20de%20tu%20ayuda%20con%20un%20equipo" class="btn btn-cta" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> ¡Comencemos!</a>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     RECOMENDACIÓN
+════════════════════════════════════════ -->
+<section class="section recommend-section">
+  <div class="section-header reveal">
+    <span class="section-tag">Ayúdanos a crecer</span>
+    <h2 class="section-title">¡Nos <span class="accent">Encantaría</span> tu Recomendación!</h2>
+    <p class="section-sub">Si quedaste satisfecho, cuéntaselo a tus amigos y familia 💙</p>
+  </div>
+  <div class="recommend-buttons">
+    <a href="https://wa.me/?text=Te%20recomiendo%20a%20Fonsec%20System%20Tech%20para%20reparaci%C3%B3n%20de%20equipos.%20Excelente%20servicio!%20%2B57%20304%20346%209821" class="btn btn-share" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> Compartir por WhatsApp</a>
+    <a href="https://wa.me/573043469821?text=Hola%20Fonsec%20Necesito%20de%20tu%20ayuda%20con%20un%20equipo" class="btn btn-primary" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> Contactar Ahora</a>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════ -->
+<footer class="footer">
+  <div class="footer-content">
+    <div class="footer-brand">
+      <img src="images/Logo -  Presentacion.jpeg" class="footer-logo" alt="Fonsec System Tech"/>
+      <span class="logo-text">Fonsec <span class="logo-accent">System Tech</span></span>
+      <p>Servicio técnico profesional en Soledad 2000</p>
+    </div>
+    <div class="footer-links">
+      <h4>Servicios</h4>
+      <ul>
+        <li><a href="#servicios">🖥️ PC &amp; Laptops</a></li>
+        <li><a href="#servicios">🎮 Consolas</a></li>
+        <li><a href="#servicios">📱 Celulares</a></li>
+      </ul>
+    </div>
+    <div class="footer-contact">
+      <h4>Contacto</h4>
+      <p><i class="fab fa-whatsapp"></i> +57 304 346 9821</p>
+      <p><i class="fas fa-map-marker-alt"></i> Soledad 2000, Atlántico</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Fonsec System Tech. Hecho con 💙 para nuestros clientes.</p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
