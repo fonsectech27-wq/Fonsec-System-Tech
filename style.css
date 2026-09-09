@@ -2539,3 +2539,256 @@ img { max-width: 100%; display: block; }
   0%,100% { background-position: 0% center; }
   50%     { background-position: 200% center; }
 }
+
+
+/* ════════════════════════════════════════════════════
+   PERFORMANCE PATCH — 120fps GPU OPTIMIZATION
+════════════════════════════════════════════════════ */
+
+/* ── COMPOSITOR-ONLY: will-change hints ─────────────
+   Tells browser to promote these to their own GPU layer  */
+.horario-card,
+.mega-card,
+.trabajo-card,
+.step,
+.stat-card,
+.review-card,
+.precio-hero-card,
+.hero-logo-wrap,
+.hero-logo-img,
+.particle,
+.float-icon,
+.horario-emoji,
+.service-emoji,
+.hc-emoji-ring,
+.hero-logo-ring,
+.hc-progress-fill,
+.live-time,
+.status-banner-dot {
+  will-change: transform, opacity;
+}
+
+/* Limit will-change to what actually animates, not everything */
+.btn-whatsapp,
+.btn-primary,
+.card-btn {
+  will-change: transform, box-shadow;
+}
+
+/* ── REPLACE SLOW PROPERTIES ─────────────────────────
+   box-shadow and filter cause repaint — convert to
+   outline + pseudo-element tricks where possible       */
+
+/* Kill expensive filter on letters at scale — use opacity instead */
+.anim-letter {
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+}
+
+/* ── REDUCE PARTICLE COUNT ────────────────────────────
+   Override: fewer particles = smoother              */
+/* (done in JS patch below — CSS hint only) */
+
+/* ── ANIMATION PERFORMANCE FLAGS ─────────────────────
+   translate3d forces GPU layer for every keyframe animation */
+@keyframes floatP {
+  0%   { transform: translate3d(0, 100vh, 0) rotate(0deg);    opacity: 0; }
+  10%  { opacity: 1; }
+  90%  { opacity: 1; }
+  100% { transform: translate3d(0, -100px, 0) rotate(720deg); opacity: 0; }
+}
+@keyframes floatLogo {
+  0%,100% { transform: translate3d(0, 0, 0); }
+  50%     { transform: translate3d(0, -18px, 0); }
+}
+@keyframes floatIconUp {
+  0%   { transform: translate3d(0, 100vh, 0) rotate(0deg)   scale(0.6); opacity: 0; }
+  10%  { opacity: 0.09; }
+  90%  { opacity: 0.07; }
+  100% { transform: translate3d(0, -120px, 0) rotate(360deg) scale(1.2); opacity: 0; }
+}
+@keyframes spinRing {
+  to { transform: rotate3d(0,0,1,360deg); }
+}
+@keyframes spin {
+  to { transform: rotate3d(0,0,1,360deg); }
+}
+@keyframes emojiBounce {
+  0%,100% { transform: translate3d(0, 0, 0) scale(1); }
+  30%     { transform: translate3d(0, -14px, 0) scale(1.15); }
+  60%     { transform: translate3d(0, -6px, 0) scale(1.05); }
+}
+@keyframes emojiFloat {
+  0%,100% { transform: translate3d(0, 0, 0) rotate(-3deg); }
+  50%     { transform: translate3d(0, -10px, 0) rotate(3deg); }
+}
+@keyframes emojiSpin {
+  0%   { transform: rotate3d(0,0,1,0deg)   scale(1); }
+  25%  { transform: rotate3d(0,0,1,-12deg) scale(1.1); }
+  75%  { transform: rotate3d(0,0,1,12deg)  scale(1.1); }
+  100% { transform: rotate3d(0,0,1,0deg)   scale(1); }
+}
+@keyframes emojiPulse {
+  0%,100% { transform: scale3d(1,1,1);    opacity: 1; }
+  50%     { transform: scale3d(1.18,1.18,1); opacity: 1; }
+}
+@keyframes coinFloat {
+  0%   { transform: translate3d(0, 0, 0) rotate(0deg)   scale(0.8); opacity: 0; }
+  15%  { opacity: 0.5; }
+  85%  { opacity: 0.4; }
+  100% { transform: translate3d(0, -200px, 0) rotate(360deg) scale(1.2); opacity: 0; }
+}
+@keyframes letterPop {
+  from { opacity: 0; transform: translate3d(0, 30px, 0) scale(0.8); }
+  to   { opacity: 1; transform: translate3d(0, 0, 0)    scale(1); }
+}
+@keyframes precioScale {
+  0%,100% { transform: scale3d(1, 1, 1); }
+  50%     { transform: scale3d(1.04, 1.04, 1); }
+}
+@keyframes glowPulse4k {
+  0%,100% { transform: scale3d(1, 1, 1);    opacity: 0.7; }
+  50%     { transform: scale3d(1.12, 1.12, 1); opacity: 1; }
+}
+@keyframes liveFlash {
+  0%,100% { opacity: 1; }
+  50%     { opacity: 0.55; }
+}
+@keyframes horarioAura {
+  0%   { opacity: 0.6; transform: scale3d(1, 1, 1); }
+  100% { opacity: 1;   transform: scale3d(1.04, 1.04, 1); }
+}
+
+/* ── REMOVE box-shadow ANIMATIONS (huge perf killer) ──
+   Replace animated box-shadows with static ones + only
+   change on :hover which triggers once                */
+.review-card         { animation: none !important; }
+.review-card:hover   {
+  transform: translateY(-6px);
+  border-color: rgba(245,158,11,0.3);
+  box-shadow: 0 14px 32px rgba(0,0,0,0.35);
+  transition: transform 0.3s ease, border-color 0.3s, box-shadow 0.3s;
+}
+.step { animation: none !important; }
+.step:hover { border-color: var(--primary); box-shadow: var(--shadow-p); }
+
+.stat-card { animation: none !important; }
+.stat-card:hover { border-color: var(--primary); transform: translateY(-4px); }
+
+/* Keep stat-num glow but make it simpler */
+.stat-num {
+  animation: none !important;
+  filter: drop-shadow(0 0 10px rgba(0,212,255,0.5));
+}
+
+.win-card { animation: none !important; }
+.brand-tag { animation: none !important; }
+.info-icon { animation: none !important; }
+.card-btn  { animation: none !important; }
+
+/* Keep WA btn pulse but reduce intensity */
+.btn-whatsapp {
+  animation: waBtnPulseLite 4s ease-in-out infinite;
+}
+@keyframes waBtnPulseLite {
+  0%,100% { box-shadow: 0 4px 20px rgba(37,211,102,0.4); }
+  50%     { box-shadow: 0 4px 28px rgba(37,211,102,0.6); }
+}
+.btn-whatsapp:hover { animation: none; }
+
+/* ── REDUCE FLOAT-ICON OPACITY (performance + aesthetics) */
+.float-icon { opacity: 0 !important; }  /* will be set by animation keyframes */
+
+/* ── CONTAIN LAYOUT ─────────────────────────────────── */
+.section           { contain: layout style; }
+.horario-section   { contain: layout style; }
+.servicios         { contain: layout style; }
+.trabajos-section  { contain: layout style; }
+.precios-section   { contain: layout style; }
+.resenas-section   { contain: layout style; }
+
+/* ── IMAGE RENDERING PERFORMANCE ──────────────────── */
+img {
+  image-rendering: auto;
+  content-visibility: auto;
+}
+.trabajo-img-wrap img,
+.hero-logo-img,
+.owner-avatar-img,
+.nav-logo-img,
+.footer-logo {
+  transform: translateZ(0);  /* GPU layer */
+}
+
+/* ── BACKDROP BLUR PERFORMANCE ──────────────────────
+   blur(20px) on many elements is expensive — reduce  */
+.horario-card     { backdrop-filter: blur(12px) !important; }
+.mega-card        { backdrop-filter: blur(14px) !important; }
+.modal-box        { backdrop-filter: blur(16px) !important; }
+.horario-owner-bar{ backdrop-filter: blur(14px) !important; }
+.modal-overlay    { backdrop-filter: blur(8px)  !important; }
+
+/* ── SECTION TAG — simpler shimmer ─────────────────── */
+.section-tag::after {
+  animation: tagShimmer 5s ease-in-out infinite;  /* slower = less CPU */
+}
+
+/* ── GRADIENT SHIFT — slower = smoother ─────────────── */
+.section-title .accent {
+  animation: gradientShift 6s linear infinite;  /* was 4s */
+}
+.cta-title   { animation: gradientShift 7s linear infinite !important; }
+.cta-accent  { animation: gradientShift 5s linear infinite !important; }
+.review-stars{ animation: gradientShift 4s linear infinite; }
+.precio-num  { animation: precioGradient 5s linear infinite, precioScale 5s ease-in-out infinite !important; }
+
+/* ── SCROLL REVEAL — use only transform+opacity (GPU) ── */
+.reveal {
+  transform: translate3d(0, 30px, 0) scale(0.98);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  will-change: transform, opacity;
+}
+.reveal.visible {
+  transform: translate3d(0, 0, 0) scale(1);
+}
+
+/* ── HERO RINGS — simpler, less fill ───────────────── */
+.hero-logo-ring { will-change: transform; }
+.ring4 { display: none; }  /* 4th ring is extra overhead */
+
+/* ── HORARIO BG GRID — reduce animation cost ────────── */
+.horario-grid-lines { animation: gridDrift 40s linear infinite; }  /* was 30s */
+.hero-grid          { animation: gridMove  30s linear infinite; }  /* was 25s */
+
+
+/* ── FAST INITIAL PAINT (font fallback) ─────────────── */
+body {
+  font-family: 'Exo 2', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+.fonts-loaded body {
+  /* already set — no flash */
+}
+
+/* ── content-visibility: auto (below fold) ──────────
+   Browser skips rendering off-screen sections until
+   user scrolls near — massive initial load speedup    */
+.trabajos-section,
+.process-section,
+.precios-section,
+.cotizar-section,
+.resenas-section,
+.proximos-section,
+.ubicacion-section,
+.recommend-section {
+  content-visibility: auto;
+  contain-intrinsic-size: 0 600px;
+}
+
+/* ── Eliminate paint-heavy backgrounds on low GPU ──── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
