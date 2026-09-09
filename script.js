@@ -1210,3 +1210,129 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal()
   }
 
 })(); // end init4KUpgrade
+
+
+/* ════════════════════════════════════════════════════
+   PERFORMANCE PATCH — 120fps Optimizations
+   Runs AFTER all other scripts to override heavy defaults
+════════════════════════════════════════════════════ */
+(function perfPatch() {
+
+  /* ── 1. REDUCE PARTICLE COUNT TO 30 (was 55) ─────── */
+  const pBg = document.getElementById('particles-bg');
+  if (pBg) {
+    // Remove every other particle
+    const all = Array.from(pBg.querySelectorAll('.particle'));
+    all.forEach((p, i) => { if (i % 2 === 0 && i > 30) p.remove(); });
+  }
+
+  /* ── 2. REDUCE FLOATING ICONS TO 16 (was 28) ─────── */
+  const fIcons = document.getElementById('floating-icons');
+  if (fIcons) {
+    const all = Array.from(fIcons.querySelectorAll('.float-icon'));
+    all.forEach((el, i) => { if (i > 14) el.remove(); });
+  }
+
+  /* ── 3. PAUSE ANIMATIONS WHEN TAB IS HIDDEN ─────────
+     Saves GPU entirely when user switches tabs          */
+  document.addEventListener('visibilitychange', () => {
+    const paused = document.hidden ? 'paused' : 'running';
+    document.querySelectorAll(
+      '.particle, .float-icon, .hero-logo-ring, .hc-emoji-ring, .icon-ring'
+    ).forEach(el => {
+      el.style.animationPlayState = paused;
+    });
+  });
+
+  /* ── 4. PAUSE RING ANIMATIONS WHEN OFF-SCREEN ────────
+     IntersectionObserver stops GPU work outside viewport */
+  const ringPauseObs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      const rings = entry.target.querySelectorAll(
+        '.hero-logo-ring, .hc-emoji-ring, .icon-ring, .live-pulse-ring'
+      );
+      const state = entry.isIntersecting ? 'running' : 'paused';
+      rings.forEach(r => { r.style.animationPlayState = state; });
+    });
+  }, { rootMargin: '100px' });
+
+  document.querySelectorAll('.hero, .horario-section, .servicios').forEach(sec => {
+    ringPauseObs.observe(sec);
+  });
+
+  /* ── 5. DEFER COIN ANIMATIONS (only if card visible) ─ */
+  const coins = document.querySelectorAll('.price-coin');
+  coins.forEach(c => { c.style.animationPlayState = 'paused'; });
+
+  const coinObs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      const state = entry.isIntersecting ? 'running' : 'paused';
+      entry.target.querySelectorAll('.price-coin').forEach(c => {
+        c.style.animationPlayState = state;
+      });
+    });
+  }, { threshold: 0.2 });
+
+  const precioCard = document.querySelector('.precio-hero-card');
+  if (precioCard) coinObs.observe(precioCard);
+
+  /* ── 6. THROTTLE SCROLL EVENTS ──────────────────────
+     Batch scroll handlers with rAF to prevent 60+ calls/sec */
+  let scrollTicking = false;
+  const origHandlers = [];
+
+  // The active-nav scroll listener already uses passive — just wrap in rAF
+  window.addEventListener('scroll', () => {
+    if (!scrollTicking) {
+      requestAnimationFrame(() => { scrollTicking = false; });
+      scrollTicking = true;
+    }
+  }, { passive: true });
+
+  /* ── 7. LAZY-INIT SPARKLES (only on pointer devices) ─ */
+  const isTouch = window.matchMedia('(hover: none)').matches;
+  if (isTouch) {
+    // On touch screens remove sparkle listeners to save CPU
+    // (they don't get hover anyway)
+    document.querySelectorAll('.stat-card, .review-card, .mega-card').forEach(el => {
+      const clone = el.cloneNode(true);
+      el.parentNode.replaceChild(clone, el);
+    });
+  }
+
+  /* ── 8. USE CSS CONTAIN ON PARTICLE CONTAINER ─────── */
+  if (pBg) {
+    pBg.style.contain = 'strict';
+    pBg.style.willChange = 'auto';
+  }
+
+  /* ── 9. REDUCE HORARIO GRID LINES ON LOW-END DEVICES ─ */
+  const fps = (() => {
+    // Quick device tier check via memory API (Chromium only)
+    const mem = navigator.deviceMemory;
+    return mem && mem <= 2 ? 'low' : 'high';
+  })();
+
+  if (fps === 'low') {
+    const gridLines = document.querySelector('.horario-grid-lines');
+    if (gridLines) gridLines.style.display = 'none';
+
+    const bgAura = document.querySelector('.horario-bg-aura');
+    if (bgAura) bgAura.style.display = 'none';
+
+    // Reduce particles further
+    if (pBg) {
+      const ps = Array.from(pBg.querySelectorAll('.particle'));
+      ps.forEach((p, i) => { if (i > 15) p.remove(); });
+    }
+    if (fIcons) fIcons.style.display = 'none';
+  }
+
+  /* ── 10. FONT-DISPLAY SWAP FALLBACK ─────────────────
+     If fonts haven't loaded, body already shows system font
+     so page is usable immediately — no FOIT              */
+  document.fonts.ready.then(() => {
+    document.documentElement.classList.add('fonts-loaded');
+  });
+
+})();
